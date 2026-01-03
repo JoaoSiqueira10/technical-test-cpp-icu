@@ -52,7 +52,8 @@ void ICU::newScore() {
 
     beds[bed]->addScore(Score(score, risk, now()));
 
-    cout << "NEWS Score: " << score << endl;
+    dashboard.update(beds);
+    led.update(beds);
 }
 
 void ICU::patientHistory() {
