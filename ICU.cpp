@@ -83,3 +83,36 @@ void ICU::listPatients() {
         }
     }
 }
+
+void ICU::dischargePatient() {
+    int id;
+    cout << "Patient ID: ";
+    cin >> id;
+
+    for (auto& [bed, p] : beds) {
+        if (p && p->getId() == id) {
+
+            char opt;
+            cout << "Discharge patient "
+                 << p->getName()
+                 << "? (Y/N): ";
+            cin >> opt;
+
+            if (opt == 'Y' || opt == 'y') {
+                delete p;
+                beds[bed] = nullptr;
+
+                cout << "Patient discharged.\n";
+
+                // ?? Atualiza Task 2
+                dashboard.update(beds);
+                led.update(beds);
+            } else {
+                cout << "Operation cancelled.\n";
+            }
+            return;
+        }
+    }
+
+    cout << "Patient not found. Please try again\n";
+}

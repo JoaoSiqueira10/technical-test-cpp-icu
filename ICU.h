@@ -19,4 +19,5 @@ public:
     void newScore();
     void patientHistory();
     void listPatients();
+    void dischargePatient();
 };
